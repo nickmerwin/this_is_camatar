@@ -60,6 +60,7 @@ module Camatar
           @camatar_video = Camatar::Api::Video.create :max_duration => Camatar::default_duration
           self.send "#{camatar_opts[:token_column]}=", @camatar_video.token
           self.send "#{camatar_opts[:max_duration_column]}=", @camatar_video.max_duration
+          save
         rescue ActiveResource::ServerError
           
         rescue ActiveResource::UnauthorizedAccess, ActiveResource::ForbiddenAccess
