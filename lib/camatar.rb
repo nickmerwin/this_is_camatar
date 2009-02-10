@@ -73,7 +73,11 @@ module Camatar
       end
     
       def camatar_save
-        @camatar_video.put(:finish)
+        video = Camatar::Api::Video.put :finish, :token => self.send(self.class.camatar_opts[:token_column])
+        # self.send "#{self.class.camatar_opts[:token_column]}=", video.flv.url
+        self.camatar_flv_url = video.camatar_flv_url
+        self.camatar_image_url = video.camatar_image_url
+        self.camatar_thumb_url = video.camatar_thumb_url
       end
     
       def camatar_delete
