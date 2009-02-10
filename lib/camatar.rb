@@ -58,8 +58,8 @@ module Camatar
       def camatar_authorize
         begin
           @camatar_video = Camatar::Api::Video.create :max_duration => Camatar::default_duration
-          self.send "#{self.class.camatar_opts[:token_column]}=", @camatar_video.token
-          self.send "#{self.class.camatar_opts[:max_duration_column]}=", @camatar_video.max_duration
+          self.camatar_token = @camatar_video.token
+          self.camatar_max_duration = @camatar_video.max_duration
           save
         rescue ActiveResource::ServerError
           
@@ -74,10 +74,11 @@ module Camatar
     
       def camatar_save
         video = Camatar::Api::Video.put :finish, :token => self.send(self.class.camatar_opts[:token_column])
-        # self.send "#{self.class.camatar_opts[:token_column]}=", video.flv.url
-        self.camatar_flv_url = video.camatar_flv_url
-        self.camatar_image_url = video.camatar_image_url
-        self.camatar_thumb_url = video.camatar_thumb_url
+
+        self.camatar_flv_url = video.flv_url
+        self.camatar_image_url = video.image_url
+        self.camatar_thumb_url = video.thumb_url
+        self.camatar_duration = video.duration
       end
     
       def camatar_delete

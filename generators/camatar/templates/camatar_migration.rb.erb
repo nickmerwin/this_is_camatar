@@ -3,11 +3,17 @@ class <%= migration_name %> < ActiveRecord::Migration
     add_column :<%= class_name.underscore.camelize.tableize %>, :camatar_flv_url, :string
     add_column :<%= class_name.underscore.camelize.tableize %>, :camatar_image_url, :string
     add_column :<%= class_name.underscore.camelize.tableize %>, :camatar_thumb_url, :string
+    add_column :<%= class_name.underscore.camelize.tableize %>, :camatar_token, :string
+    add_column :<%= class_name.underscore.camelize.tableize %>, :camatar_duration, :integer
+    add_column :<%= class_name.underscore.camelize.tableize %>, :camatar_max_duration, :integer
   end
 
   def self.down
     remove_column :<%= class_name.underscore.camelize.tableize %>, :camatar_flv_url, :string
     remove_column :<%= class_name.underscore.camelize.tableize %>, :camatar_image_url, :string
     remove_column :<%= class_name.underscore.camelize.tableize %>, :camatar_thumb_url, :string
+    remove_column :<%= class_name.underscore.camelize.tableize %>, :camatar_token, :string
+    remove_column :<%= class_name.underscore.camelize.tableize %>, :camatar_duration, :integer
+    remove_column :<%= class_name.underscore.camelize.tableize %>, :camatar_max_duration, :integer
   end
 end
