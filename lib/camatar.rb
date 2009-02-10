@@ -41,8 +41,8 @@ module Camatar
         
         after_create :camatar_authorize
         
-        # opts[:max_duration]
-        # opts[:]
+        opts[:max_duration_column] ||= :max_duration
+        opts[:token_column] ||= :token
         
         write_inheritable_attribute :camatar_opts, opts
       end
@@ -58,6 +58,8 @@ module Camatar
       def camatar_authorize
         begin
           @camatar_video = Camatar::Api::Video.create :max_duration => Camatar::default_duration
+          self.send "#{camatar_opts[:token_column]}=", @camatar_video.token
+          self.send "#{camatar_opts[:max_duration_column]}=", @camatar_video.max_duration
         rescue ActiveResource::ServerError
           
         rescue ActiveResource::UnauthorizedAccess, ActiveResource::ForbiddenAccess
