@@ -77,12 +77,13 @@ module Camatar
       end
     
       def camatar_save
-        video = Camatar::Api::Video.get :finish, :token => camatar_token
+        video = Camatar::Api::Video.get :finish, :token => self.camatar_token
 
         self.camatar_flv_url = video["flv_url"]
         self.camatar_image_url = video["image_url"]
         self.camatar_thumb_url = video["thumb_url"]
         self.camatar_duration = video["duration"]
+        save
       end
     
       def camatar_delete
