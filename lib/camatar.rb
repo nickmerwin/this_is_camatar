@@ -79,9 +79,9 @@ module Camatar
       def camatar_save
         video = Camatar::Api::Video.get :finish, :token => self.camatar_token
 
-        self.camatar_flv_url = video["flv_url"]
-        self.camatar_image_url = video["image_url"]
-        self.camatar_thumb_url = video["thumb_url"]
+        self.camatar_flv_url = video["flv_url"].gsub(/\?.*$/,'')
+        self.camatar_image_url = video["image_url"].gsub(/\?.*$/,'')
+        self.camatar_thumb_url = video["thumb_url"].gsub(/\?.*$/,'')
         self.camatar_duration = video["duration"]
         save
       end
