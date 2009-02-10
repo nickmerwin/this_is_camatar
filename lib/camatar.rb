@@ -54,6 +54,10 @@ module Camatar
   
     module InstanceMethods
       attr_accessor :camatar_video
+      
+      def camatar_valid?
+        !self.camatar_duration.blank?
+      end
     
       def camatar_authorize
         begin
