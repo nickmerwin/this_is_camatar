@@ -9,13 +9,14 @@ module Camatar
   # ==========================
 
   class << self
-    attr_accessor :domain, :default_duration, :api_key
+    attr_accessor :domain, :default_duration, :api_key, :rtmp_domain
   
     def configure
       opts = YAML::load(File.open("#{RAILS_ROOT}/config/camatar.yml"))
     
       @defaut_duration = opts[RAILS_ENV]['default_duration']
       @domain = opts[RAILS_ENV]['domain']
+      @rtmp_domain = opts[RAILS_ENV]['rtmp_domain']
       @api_key = opts[RAILS_ENV]['api_key']
       
       Api::Base.user = "api"
@@ -79,9 +80,9 @@ module Camatar
       def camatar_save
         video = Camatar::Api::Video.get :finish, :token => self.camatar_token
 
-        self.camatar_flv_url = video["flv_url"].gsub(/\?.*$/,'')
-        self.camatar_image_url = video["image_url"].gsub(/\?.*$/,'')
-        self.camatar_thumb_url = video["thumb_url"].gsub(/\?.*$/,'')
+        self.camatar_flv_url = video["flv_url"]
+        self.camatar_image_url = video["image_url"]
+        self.camatar_thumb_url = video["thumb_url"]
         self.camatar_duration = video["duration"]
         save
       end
