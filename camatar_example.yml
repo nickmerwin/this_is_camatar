@@ -1,5 +1,5 @@
 development:
   api_key:
   domain:
-  rtmp_domain: 
+  rtmp: 
   default_duration:

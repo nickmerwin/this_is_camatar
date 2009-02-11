@@ -9,14 +9,14 @@ module Camatar
   # ==========================
 
   class << self
-    attr_accessor :domain, :default_duration, :api_key, :rtmp_domain
+    attr_accessor :domain, :default_duration, :api_key, :rtmp
   
     def configure
       opts = YAML::load(File.open("#{RAILS_ROOT}/config/camatar.yml"))
     
       @defaut_duration = opts[RAILS_ENV]['default_duration']
       @domain = opts[RAILS_ENV]['domain']
-      @rtmp_domain = opts[RAILS_ENV]['rtmp_domain']
+      @rtmp = opts[RAILS_ENV]['rtmp']
       @api_key = opts[RAILS_ENV]['api_key']
       
       Api::Base.user = "api"
