@@ -1,6 +1,6 @@
 # Install hook code here
 require 'fileutils'
-
-FileUtils.cp File.dirname(__FILE__) + '/camatar.swf', "/../../../public"
-FileUtils.cp File.dirname(__FILE__) + '/camatar_example.yml', "/../../../config"
-puts IO.read(File.join(File.dirname(__FILE__), 'README.markdown'))
+pwd = File.dirname(__FILE__)
+FileUtils.cp  "#{pwd}/camatar.swf", "#{pwd}/../../../public"
+FileUtils.cp "#{pwd}/camatar_example.yml", "#{pwd}/../../../config"
+puts IO.read(File.join(pwd, 'README.markdown'))
