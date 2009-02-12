@@ -36,19 +36,17 @@ First fill out config/camatar.yml
 Recorder
 =====================================================
  
-## Loading camatar.swf from js
-# flashvars:
+### flashvars:
  
      type = "rtmp"
- 
      streamer => Camatar::domain
  
-     max_record_time => duration ("60")
+     max_record_time => duration (@video.camatar_max_duration)
  
-     file => initial video ("asdf.flv")
-     image => initial image ("asdf.jpg")
+     file => initial video (@video.camatar_flv_url)
+     image => initial image (@video.camatar_image_url)
 
-     token => recording authorization token ("asdf")
+     token => recording authorization token (@video.camatar_token)
  
      rtmp_url => camatar domain (Camatar::domain)
  
