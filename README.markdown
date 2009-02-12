@@ -1,12 +1,12 @@
 Camatar v.0.1
-=============
+=====================================================
 
 Plugin for models to use Camatar server.
 
----
+
 
 Usage
-=====
+=====================================================
 
 First fill out config/camatar.yml
 
@@ -31,10 +31,10 @@ First fill out config/camatar.yml
     # check if recorded & saved
     @video.camatar_valid? 
 
----
- 
+
+
 Recorder
-======== 
+=====================================================
  
 ## Loading camatar.swf from js
 # flashvars:
