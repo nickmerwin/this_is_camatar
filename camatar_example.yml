@@ -1,4 +1,25 @@
+# Camatar config
+# ==============
+
 development:
+  api_key:
+  domain:
+  rtmp: 
+  default_duration:
+    
+test:
+  api_key:
+  domain:
+  rtmp: 
+  default_duration:
+    
+staging:
+  api_key:
+  domain:
+  rtmp: 
+  default_duration:
+    
+production:
   api_key:
   domain:
   rtmp: 
