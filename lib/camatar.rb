@@ -40,7 +40,7 @@ module Camatar
       def this_is_camatar(opts={})
         include InstanceMethods
         
-        after_create :camatar_authorize
+        after_create :camatar_authorize unless opts[:auto_authorize] == false || RAILS_ENV == "TEST"
         
         opts[:max_duration_column] ||= :max_duration
         opts[:token_column] ||= :token

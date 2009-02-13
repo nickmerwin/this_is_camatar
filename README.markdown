@@ -8,7 +8,13 @@ Plugin for models to use Camatar server.
 Usage
 =====================================================
 
-First fill out config/camatar.yml
+First fill out config/camatar.yml: 
+
+    development:
+      api_key: 24a0625a2ee063ac6fa39fc0b5e4d0fbe677548b2158ee9bd8e8d034e3fa2ebe
+      domain: localhost:3001
+      rtmp: rtmp://localhost/camatar
+      default_duration: 60
 
 ### Generator
 
