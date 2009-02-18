@@ -56,6 +56,14 @@ module Camatar
     module InstanceMethods
       attr_accessor :camatar_video
       
+      # S3 cname setup 
+      %w(camatar_flv_url camatar_image_url camatar_thumb_url).each do |col|
+        define_method col do
+          self.class.camatar_opts[:s3_cname] ? read_attribute(col).gsub(/s3\.amazonaws\.com\//,'') :
+            read_attribute(col)
+        end
+      end
+      
       def camatar_valid?
         !self.camatar_duration.blank?
       end
@@ -78,16 +86,12 @@ module Camatar
       end
     
       def camatar_save
-        def parse(url)
-          camatar_opts[:s3_cname] ? url.gsub(/s3\.amazon\.com/,'') : url
-        end
-        
         video = Camatar::Api::Video.get :finish, :token => self.camatar_token
 
-        self.camatar_flv_url = parse video["flv_url"]
-        self.camatar_image_url = parse video["image_url"]
-        self.camatar_thumb_url = parse video["thumb_url"]
-        self.camatar_duration = video["duration"]
+        self.camatar_flv_url    = video["flv_url"]
+        self.camatar_image_url  = video["image_url"]
+        self.camatar_thumb_url  = video["thumb_url"]
+        self.camatar_duration   = video["duration"]
         save
       end
     
