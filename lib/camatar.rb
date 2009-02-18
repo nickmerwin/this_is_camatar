@@ -59,7 +59,7 @@ module Camatar
       # S3 cname setup 
       %w(camatar_flv_url camatar_image_url camatar_thumb_url).each do |col|
         define_method col do
-          self.class.camatar_opts[:s3_cname] ? (read_attribute(col) || "").gsub(/s3\.amazonaws\.com\//,'') :
+          (self.class.camatar_opts[:s3_cname] && !read_attribute(col).blank?) ? read_attribute(col).gsub(/s3\.amazonaws\.com\//,'') :
             read_attribute(col)
         end
       end
