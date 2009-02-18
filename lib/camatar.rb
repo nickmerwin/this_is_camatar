@@ -78,11 +78,15 @@ module Camatar
       end
     
       def camatar_save
+        def parse(url)
+          camatar_opts[:s3_cname] ? url.gsub(/s3\.amazon\.com/,'') : url
+        end
+        
         video = Camatar::Api::Video.get :finish, :token => self.camatar_token
 
-        self.camatar_flv_url = video["flv_url"]
-        self.camatar_image_url = video["image_url"]
-        self.camatar_thumb_url = video["thumb_url"]
+        self.camatar_flv_url = parse video["flv_url"]
+        self.camatar_image_url = parse video["image_url"]
+        self.camatar_thumb_url = parse video["thumb_url"]
         self.camatar_duration = video["duration"]
         save
       end
