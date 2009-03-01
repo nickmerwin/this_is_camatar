@@ -85,6 +85,10 @@ module Camatar
         
       end
     
+      def camatar_authorized?
+        !self.camatar_token.blank?
+      end
+    
       def camatar_save
         video = Camatar::Api::Video.get :finish, :token => self.camatar_token
 
